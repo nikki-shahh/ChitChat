@@ -27,8 +27,8 @@ class Start extends Component {
     colors = {
         pink: "#ffb2b1",
         yellow: "#fff3ad",
-        green: "#bcffbc",
-        blue: "#a2edff",
+        orange: "#f1cdb0",
+        blue: "#97f2f3",
     };
 
     render() {
@@ -37,7 +37,7 @@ class Start extends Component {
                 <ImageBackground source={bgImage} resizeMode="cover" style={styles.bgImage}>
                     <View
                         accessible={false}
-                        accessibilityLabel="Chattry Messaging App"
+                        accessibilityLabel="ChitChat Messaging App"
                         accessibilityHint="The title of the app"
                         accessibilityRole="header"
                         style={styles.titlebox}>
@@ -46,6 +46,9 @@ class Start extends Component {
 
                     <View style={styles.box}>
                         <TextInput
+                            accessible={true}
+                            accessibilityLabel="Your Name"
+                            accessibilityHint="Type the name you want to use in the chat session"
                             style={styles.textbox} //input
                             onChangeText={(text) => this.setState({ name: text })}
                             value={this.state.name}
@@ -56,28 +59,36 @@ class Start extends Component {
                             <View style={styles.colorChange}>
                                 <TouchableOpacity
                                     accessible={true}
+                                    accessibilityLabel="Select pink background"
                                     accessibilityRole="button"
+                                    accessibilityHint="Lets you choose a background for the chat screen"
                                     onPress={() => this.changeBackgroundColor(this.colors.pink)}
                                 >
                                     <View style={styles.bgColor1}></View>
                                 </TouchableOpacity>
                                 <TouchableOpacity
                                     accessible={true}
+                                    accessibilityLabel="Select yellow background"
                                     accessibilityRole="button"
+                                    accessibilityHint="Lets you choose a background for the chat screen"
                                     onPress={() => this.changeBackgroundColor(this.colors.yellow)}
                                 >
                                     <View style={styles.bgColor2}></View>
                                 </TouchableOpacity>
                                 <TouchableOpacity
                                     accessible={true}
+                                    accessibilityLabel="Select orange background"
                                     accessibilityRole="button"
-                                    onPress={() => this.changeBackgroundColor(this.colors.green)}
+                                    accessibilityHint="Lets you choose a background for the chat screen"
+                                    onPress={() => this.changeBackgroundColor(this.colors.orange)}
                                 >
                                     <View style={styles.bgColor3}></View>
                                 </TouchableOpacity>
                                 <TouchableOpacity
                                     accessible={true}
+                                    accessibilityLabel="Select blue background"
                                     accessibilityRole="button"
+                                    accessibilityHint="Lets you choose a background for the chat screen"
                                     onPress={() => this.changeBackgroundColor(this.colors.blue)}
                                 >
                                     <View style={styles.bgColor4}></View>
@@ -85,9 +96,13 @@ class Start extends Component {
                             </View>
                         </View>
                         <Button
+                            accessible={true}
+                            accessibilityLabel="Start texting"
+                            accessibilityHint="Lets you start a new chat session"
+                            accessibilityRole="button"
                             style={styles.btn}
                             title="Start Chatting"
-                            color={"#d64947"}
+                            color={"#e18d96"}
                             containerViewStyle={{ width: "100%", marginLeft: 0 }}
                             onPress={() => this.props.navigation.navigate("Chat", {
                                 name: this.state.name,
@@ -106,7 +121,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: "column",
-        backgroundColor: "#151617",
+        backgroundColor: "#ffece6",
         alignItems: "center",
         justifyContent: "space-between",
     },
@@ -141,34 +156,29 @@ const styles = StyleSheet.create({
         minHeight: 260,
         maxHeight: 290,
         borderRadius: 20,
+        backgroundColor: "rgba(103,134,138,0.1)",
     },
     text3: {
-        color: "white",
-        fontSize: 20,
+        fontSize: 16,
         lineHeight: 64,
         textAlign: "center",
-        backgroundColor: "#ffb2b1"
+        fontWeight: "300",
+        color: "#67868a",
+        marginBottom: 10,
     },
     textbox: {
         flex: 1,
         height: 50,
         maxHeight: 50,
-        borderColor: "gray",
+        borderColor: "#67868a",
         borderWidth: 1,
         width: "88%",
         padding: 5,
         paddingLeft: 10,
         fontSize: 16,
         fontWeight: "300",
-        color: "#757083",
+        color: "black",
         opacity: 0.5,
-    },
-    text3: {
-        fontSize: 16,
-        fontWeight: "300",
-        color: "#757083",
-        opacity: 1,
-        marginBottom: 10,
     },
     bgChange: {
         flex: 1,
@@ -195,13 +205,13 @@ const styles = StyleSheet.create({
     bgColor3: {
         width: 40,
         height: 40,
-        backgroundColor: "#bcffbc",
+        backgroundColor: "#f1cdb0",
         borderRadius: 40,
     },
     bgColor4: {
         width: 40,
         height: 40,
-        backgroundColor: "#a2edff",
+        backgroundColor: "#97f2f3",
         borderRadius: 40,
     },
     btn: {
