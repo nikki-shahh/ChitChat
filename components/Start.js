@@ -3,7 +3,7 @@ import { View, Text, Button, ImageBackground, StyleSheet } from 'react-native';
 import { TextInput, TouchableOpacity } from "react-native-gesture-handler";
 
 //import images//
-import bgImage from "../assets/image/chitchat.jpeg";
+import bgImage from "../assets/image/chitchatfp.jpg";
 
 /*
  * Start component where the user can type 
@@ -41,7 +41,6 @@ class Start extends Component {
                         accessibilityHint="The title of the app"
                         accessibilityRole="header"
                         style={styles.titlebox}>
-                        <Text style={styles.text1}>ChitChat</Text>
                     </View>
 
                     <View style={styles.box}>
@@ -141,7 +140,7 @@ const styles = StyleSheet.create({
         paddingTop: 260,
     },
     titlebox: {
-        height: '44%',
+        height: '46%',
     },
     box: {
         flexGrow: 1,
@@ -156,7 +155,6 @@ const styles = StyleSheet.create({
         minHeight: 260,
         maxHeight: 290,
         borderRadius: 20,
-        backgroundColor: "rgba(103,134,138,0.1)",
     },
     text3: {
         fontSize: 16,
