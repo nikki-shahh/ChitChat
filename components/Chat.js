@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Platform, KeyboardAvoidingView, LogBox } from "react-native";
+import { View, Platform, KeyboardAvoidingView, LogBox, ActivityIndicator } from "react-native";
 import { Bubble, GiftedChat, SystemMessage, Day, InputToolbar } from "react-native-gifted-chat";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import NetInfo from '@react-native-community/netinfo';
@@ -8,9 +8,21 @@ import "firebase/firestore";
 import CustomActions from './CustomActions';
 import MapView from 'react-native-maps';
 
+// Firebase configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyCSon4WT5xE51Juwh0bbFBnY-EhXySLFk8",
+    authDomain: "chatapp-732fa.firebaseapp.com",
+    projectId: "chatapp-732fa",
+    storageBucket: "chatapp-732fa.appspot.com",
+    messagingSenderId: "262217102405",
+    appId: "1:262217102405:web:eb4111c654aa2cdeed9f2c",
+    measurementId: "G-PK1JN5P7J1"
+};
+
+
 class Chat extends Component {
     constructor(props) {
-        super();
+        super(props);
         this.state = {
             messages: [],
             uid: 0,
@@ -26,15 +38,9 @@ class Chat extends Component {
 
         //initializing firebase
         if (!firebase.apps.length) {
-            firebase.initializeApp({
-                apiKey: "AIzaSyCdDNojL6bmpEafy722yA4Ld2gqfCsws8Q",
-                authDomain: "chitchat-c8889.firebaseapp.com",
-                projectId: "chitchat-c8889",
-                storageBucket: "chitchat-c8889.appspot.com",
-                messagingSenderId: "822826540714",
-                appId: "1:822826540714:web:08456a0eb5ed494de4fad3"
-            });
+            firebase.initializeApp(firebaseConfig);
         }
+
         //register for updates
         this.referenceChatMessages = firebase.firestore().collection("messages");
 
@@ -89,7 +95,6 @@ class Chat extends Component {
         //represent the connection status
         NetInfo.fetch().then(connection => {
             if (connection.isConnected) {
-                console.log('online');
 
                 // user authentication
                 this.authUnsubscribe = firebase.auth().onAuthStateChanged(async (user) => {
@@ -118,15 +123,6 @@ class Chat extends Component {
                 this.getMessages();
             }
         });
-
-        // system message when user enters chat room
-        const systemMsg = {
-            _id: `sys-${Math.floor(Math.random() * 100000)}`,
-            text: `${name ? name : "Anonymous"} joined the conversation 👋`,
-            createdAt: new Date(),
-            system: true
-        }
-        this.referenceChatMessages.add(systemMsg);
     }
 
 
@@ -221,7 +217,7 @@ class Chat extends Component {
 
     // Renders a customized system message
     renderSystemMessage(props) {
-        return <SystemMessage {...props} textStyle={{ color: "#67868a" }} />;
+        return <SystemMessage {...props} textStyle={{ color: "#cfcfc4" }} />;
     }
 
     // Renders a customized date 
@@ -229,7 +225,7 @@ class Chat extends Component {
         return <Day
             {...props}
             textStyle={{
-                color: "#67868a",
+                color: "#cfcfc4",
                 padding: 5,
             }}
         />;
@@ -275,7 +271,7 @@ class Chat extends Component {
                     onSend={messages => this.onSend(messages)}
                     user={{
                         _id: this.state.user._id,
-                        name: this.state.name,
+                        name: this.state.user.name,
                         avatar: this.state.user.avatar
                     }}
                 />

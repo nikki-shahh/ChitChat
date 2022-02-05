@@ -25,10 +25,10 @@ class Start extends Component {
 
     // The colors for the swatch
     colors = {
-        pink: "#ffb2b1",
-        yellow: "#fff3ad",
-        orange: "#f1cdb0",
-        blue: "#97f2f3",
+        purple: "#7e6ab0",
+        pink: "#ff6e9e",
+        orange: "#e6c25c",
+        blue: "#4ba9b8",
     };
 
     render() {
@@ -36,7 +36,7 @@ class Start extends Component {
             <View style={styles.container}>
                 <ImageBackground source={bgImage} resizeMode="cover" style={styles.bgImage}>
                     <View
-                        accessible={false}
+                        accessible={true}
                         accessibilityLabel="ChitChat Messaging App"
                         accessibilityHint="The title of the app"
                         accessibilityRole="header"
@@ -58,19 +58,19 @@ class Start extends Component {
                             <View style={styles.colorChange}>
                                 <TouchableOpacity
                                     accessible={true}
-                                    accessibilityLabel="Select pink background"
+                                    accessibilityLabel="Select purple background"
                                     accessibilityRole="button"
                                     accessibilityHint="Lets you choose a background for the chat screen"
-                                    onPress={() => this.changeBackgroundColor(this.colors.pink)}
+                                    onPress={() => this.changeBackgroundColor(this.colors.purple)}
                                 >
                                     <View style={styles.bgColor1}></View>
                                 </TouchableOpacity>
                                 <TouchableOpacity
                                     accessible={true}
-                                    accessibilityLabel="Select yellow background"
+                                    accessibilityLabel="Select pink background"
                                     accessibilityRole="button"
                                     accessibilityHint="Lets you choose a background for the chat screen"
-                                    onPress={() => this.changeBackgroundColor(this.colors.yellow)}
+                                    onPress={() => this.changeBackgroundColor(this.colors.pink)}
                                 >
                                     <View style={styles.bgColor2}></View>
                                 </TouchableOpacity>
@@ -191,25 +191,25 @@ const styles = StyleSheet.create({
     bgColor1: {
         width: 40,
         height: 40,
-        backgroundColor: "#ffb2b1",
+        backgroundColor: "#7e6ab0",
         borderRadius: 40,
     },
     bgColor2: {
         width: 40,
         height: 40,
-        backgroundColor: "#fff3ad",
+        backgroundColor: "#ff6e9e",
         borderRadius: 40,
     },
     bgColor3: {
         width: 40,
         height: 40,
-        backgroundColor: "#f1cdb0",
+        backgroundColor: "#e6c25c",
         borderRadius: 40,
     },
     bgColor4: {
         width: 40,
         height: 40,
-        backgroundColor: "#97f2f3",
+        backgroundColor: "#4ba9b8",
         borderRadius: 40,
     },
     btn: {
