@@ -4,7 +4,7 @@
 
 ChitChat is a chat app for mobile devices, developed using React Native. The app will provide users with a chat interface and options to share images and their location.
 
-<img width="254" height="404" src="https://github.com/nikki-shahh/ChitChat/blob/main/assets/image/IMG_6307.jpg" alt="A screenshot of the app's screens"> <img width="254" height="404" src="https://github.com/nikki-shahh/ChitChat/blob/main/assets/image/IMG_6312.jpg" alt="A screenshot of the app's screens">
+<img width="244" height="424" src="https://github.com/nikki-shahh/ChitChat/blob/main/assets/image/IMG_6307.jpg" alt="A screenshot of the app's screens"> <img width="244" height="424" src="https://github.com/nikki-shahh/ChitChat/blob/main/assets/image/IMG_6312.jpg" alt="A screenshot of the app's screens">
 
 ## Tech Stack
 
@@ -12,7 +12,7 @@ ChitChat is a chat app for mobile devices, developed using React Native. The app
 - [Expo](https://expo.dev/)
 - [Firebase Firestore](https://firebase.google.com/)
 - [Gifted Chat](https://github.com/FaridSafi/react-native-gifted-chat)
-- 
+
 ## User Stories
 
 - As a new user, I want to be able to easily enter a chat room so I can quickly start talking to my friends and family.
