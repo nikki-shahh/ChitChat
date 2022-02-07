@@ -4,6 +4,7 @@
 
 ChitChat is a chat app for mobile devices, developed using React Native. The app will provide users with a chat interface and options to share images and their location.
 
+<img width="254" height="404" src="https://github.com/nikki-shahh/ChitChat/blob/main/assets/image/IMG_6307.jpg" alt="A screenshot of the app's screens"> <img width="254" height="404" src="https://github.com/nikki-shahh/ChitChat/blob/main/assets/image/IMG_6312.jpg" alt="A screenshot of the app's screens">
 
 ## Tech Stack
 
@@ -11,14 +12,23 @@ ChitChat is a chat app for mobile devices, developed using React Native. The app
 - [Expo](https://expo.dev/)
 - [Firebase Firestore](https://firebase.google.com/)
 - [Gifted Chat](https://github.com/FaridSafi/react-native-gifted-chat)
+- 
+## User Stories
 
-## Features
+- As a new user, I want to be able to easily enter a chat room so I can quickly start talking to my friends and family.
+- As a user, I want to be able to send messages to my friends and family members to exchange the latest news.
+- As a user, I want to send images to my friends to show them what I’m currently doing.
+- As a user, I want to share my location with my friends to show them where I am.
+- As a user, I want to be able to read my messages offline so I can reread conversations at any time.
+- As a user with a visual impairment, I want to use a chat app that is compatible with a screen reader so that I can engage with a chat interface.
 
-- The user can pick a nickname
-- The user can pick a background from the swatch
-- The user will access a common chat room where the people can exchange text, images and their location
-- If the device is offline, the user would be able to read the latest messages saved on the device, but they won't be able to send new messages
-- When the device is back online, you will see the messages that were sent while offline
+## Key Features
+
+- A page where users can enter their name and choose a background color for the chat screen before joining the chat.
+- A page displaying the conversation, as well as an input field and submit button.
+- The chat must provide users with two additional communication features: sending images and location data.
+- Data gets stored online and offline.
+
 
 ## Permissions
 
@@ -33,21 +43,25 @@ The images are stored on Firebase Storage.
 ### 0. Prerequisites
 
 - Node and npm ([installation steps](https://nodejs.org/en/download/))
-- Yarn `npm install --global yarn`
+- Yarn or npm `npm install --global yarn` or `npm install -g npm`
 - Expo `npm install expo-cli --global`
+-Then, clone the repostory to your machine:
+`https://github.com/nikki-shahh/ChitChat` 
 
 ### 1. Install dependencies
 
 - From your terminal, navigate to the root folder of the project
-- In your terminal, run `yarn install`
+- In your terminal, run `yarn install` or `npm install`
 
 ### 2. Run the app
 
-- To launch the app run `expo start`
+- To launch the app run `expo start` or `npm start`
 - Expo will start and a browser window will open, that gives you different options to execute the app on a device or emulator
 
 ### 3. Set up a device
 
 - Download the Expo app on the device you want to use to run the app
-- With your device, scan QR code (Android) or send a link via email (iOS) to connect to expo
-- The app will start on your device and you'll be able to use it
+- With your device, scan QR code or send a link via email to connect to expo
+- The app will start on your device and you'll be able to use it 
+or
+- Install Xcode or Android Studio on your machine , in your terminal run i for iOS and a for Android
