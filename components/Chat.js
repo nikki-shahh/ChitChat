@@ -157,7 +157,7 @@ class Chat extends Component {
     addMessages() {
         const message = this.state.messages[0];
         // adds a new messages to the collection
-        this.referenceChatMessages.add({
+        return this.referenceChatMessages.add({
             uid: this.state.uid,
             user: this.state.user,
             _id: message._id,
@@ -174,110 +174,116 @@ class Chat extends Component {
             messages: GiftedChat.append(previousState.messages, newMessages),
         }),
             () => {
-                this.addMessages();
-                this.saveMessages();
+                this.addMessages()
+                    .catch((e) => {
+                        alert("something went wrong")
+                        console.log(error.message);
+                    });
+                this.saveMessages()
+                    .catch((e) => {
+                        console.log(error.message);
+                    });
             })
     }
 
     //render the default toolbar when the user id online
     renderInputToolbar(props) {
-        if (this.state.isConnected == false) {
-        } else {
+        if (this.state.isConnected)
             return (
                 <InputToolbar {...props} />
             );
-        }
     }
+}
 
-    // that rapresents a text bubble with custon background color
+// that rapresents a text bubble with custon background color
 
-    renderBubble(props) {
+renderBubble(props) {
+    return (
+        <Bubble
+            {...props}
+            wrapperStyle={{
+                right: {
+                    backgroundColor: "#cfcfc4",
+                },
+                left: {
+                    backgroundColor: "#f6f6eb",
+                }
+            }}
+            textStyle={{
+                right: {
+                    color: '#4e6669',
+                },
+                left: {
+                    color: '#67868a',
+                }
+            }}
+        />
+    )
+}
+
+// Renders a customized system message
+renderSystemMessage(props) {
+    return <SystemMessage {...props} textStyle={{ color: "#cfcfc4" }} />;
+}
+
+// Renders a customized date 
+renderDay(props) {
+    return <Day
+        {...props}
+        textStyle={{
+            color: "#cfcfc4",
+            padding: 5,
+        }}
+    />;
+}
+
+//creates circle button
+renderCustomActions = (props) => {
+    return <CustomActions {...props} />;
+};
+
+//custom map view
+renderCustomView(props) {
+    const { currentMessage } = props;
+    if (currentMessage.location) {
         return (
-            <Bubble
-                {...props}
-                wrapperStyle={{
-                    right: {
-                        backgroundColor: "#cfcfc4",
-                    },
-                    left: {
-                        backgroundColor: "#f6f6eb",
-                    }
-                }}
-                textStyle={{
-                    right: {
-                        color: '#4e6669',
-                    },
-                    left: {
-                        color: '#67868a',
-                    }
+            <MapView
+                style={{ width: 150, height: 100, borderRadius: 13, margin: 3 }}
+                region={{
+                    latitude: currentMessage.location.latitude,
+                    longitude: currentMessage.location.longitude,
+                    latitudeDelta: 0.0922,
+                    longitudeDelta: 0.0421,
                 }}
             />
-        )
-    }
-
-    // Renders a customized system message
-    renderSystemMessage(props) {
-        return <SystemMessage {...props} textStyle={{ color: "#cfcfc4" }} />;
-    }
-
-    // Renders a customized date 
-    renderDay(props) {
-        return <Day
-            {...props}
-            textStyle={{
-                color: "#cfcfc4",
-                padding: 5,
-            }}
-        />;
-    }
-
-    //creates circle button
-    renderCustomActions = (props) => {
-        return <CustomActions {...props} />;
-    };
-
-    //custom map view
-    renderCustomView(props) {
-        const { currentMessage } = props;
-        if (currentMessage.location) {
-            return (
-                <MapView
-                    style={{ width: 150, height: 100, borderRadius: 13, margin: 3 }}
-                    region={{
-                        latitude: currentMessage.location.latitude,
-                        longitude: currentMessage.location.longitude,
-                        latitudeDelta: 0.0922,
-                        longitudeDelta: 0.0421,
-                    }}
-                />
-            );
-        }
-        return null;
-    }
-
-
-    render() {
-        let { bgColor } = this.props.route.params;
-        return (
-            <View style={{ flex: 1, backgroundColor: bgColor, }} >
-                <GiftedChat
-                    renderBubble={this.renderBubble.bind(this)}
-                    renderSystemMessage={this.renderSystemMessage}
-                    renderDay={this.renderDay}
-                    renderInputToolbar={this.renderInputToolbar.bind(this)}
-                    messages={this.state.messages}
-                    renderActions={this.renderCustomActions}
-                    renderCustomView={this.renderCustomView}
-                    onSend={messages => this.onSend(messages)}
-                    user={{
-                        _id: this.state.user._id,
-                        name: this.state.user.name,
-                        avatar: this.state.user.avatar
-                    }}
-                />
-                {Platform.OS === 'android' ? <KeyboardAvoidingView behavior="height" /> : null}
-            </View>
         );
     }
+    return null;
+}
+
+
+render() {
+    let { bgColor } = this.props.route.params;
+    return (
+        <View style={{ flex: 1, backgroundColor: bgColor, }} >
+            <GiftedChat
+                renderBubble={this.renderBubble.bind(this)}
+                renderSystemMessage={this.renderSystemMessage}
+                renderDay={this.renderDay}
+                renderInputToolbar={this.renderInputToolbar.bind(this)}
+                messages={this.state.messages}
+                renderActions={this.renderCustomActions}
+                renderCustomView={this.renderCustomView}
+                onSend={messages => this.onSend(messages)}
+                user={{
+                    _id: this.state.user._id,
+                    name: this.state.user.name,
+                    avatar: this.state.user.avatar
+                }}
+            />
+            {Platform.OS === 'android' ? <KeyboardAvoidingView behavior="height" /> : null}
+        </View>
+    );
+}
 }
 export default Chat;
